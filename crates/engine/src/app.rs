@@ -378,7 +378,10 @@ mod tests {
         std::fs::write(directory.path().join("cell_cache.rkyv"), []).unwrap();
         std::fs::write(
             directory.path().join("conversion-manifest.json"),
-            br#"{"schema_version":4,"complete":true}"#,
+            format!(
+                r#"{{"schema_version":{},"complete":true}}"#,
+                converter_schema_version()
+            ),
         )
         .unwrap();
         std::fs::write(
